@@ -11,11 +11,37 @@ app.get('/nueva-ruta', (req, res) => {
 });
 
 app.get('/products', (req, res) => {
+  res.json([
+    {
+      name: 'Producto 1',
+      price: 1000
+    },
+    {
+      name: 'Producto 2',
+      price: 2000
+    }
+  ]);
+});
+
+app.get('/products/:id', (req, res) => {
+  const { id } = req.params;
   res.json({
+    id: id,
     name: 'Producto 1',
     price: 1000
-  });
+    });
 });
+
+app.get('/categories/:categoryId/products/:productId', (req, res) => {
+  const { categoryId, productId } = req.params;
+  res.json({
+    categoryId: categoryId,
+    productId: productId,
+    name: 'Producto 1',
+    price: 1000
+    });
+});
+
 
 app.listen(port, () => {
   console.log(`Mi puerto es: http://localhost:${port}`);
